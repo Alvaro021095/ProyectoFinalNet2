@@ -10,114 +10,115 @@ using Platform.Entity.Entity;
 
 namespace ProyectoFinalNet.Controllers
 {
-    public class usuarioController : Controller
+    public class proyectoController : Controller
     {
         private ProyNet2Entities1 db = new ProyNet2Entities1();
 
-        // GET: /usuario/
+        // GET: /proyecto/
         public ActionResult Index()
         {
-            var usuario = db.Usuario.Include(u => u.Tipo_Usuario1);
-            return View(usuario.ToList());
+            var proyecto = db.Proyecto.Include(p => p.Cargo).Include(p => p.Usuario);
+            return View(proyecto.ToList());
         }
 
-        // GET: /usuario/Details/5
+        // GET: /proyecto/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Proyecto proyecto = db.Proyecto.Find(id);
+            if (proyecto == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(proyecto);
         }
 
-        // GET: /usuario/Create
+        // GET: /proyecto/Create
         public ActionResult Create()
         {
-            ViewBag.Tipo_Usuario = new SelectList(db.Tipo_Usuario, "id", "tipo");
+            ViewBag.Cargo_id = new SelectList(db.Cargo, "id", "nombre");
+            ViewBag.Usuario_id = new SelectList(db.Usuario, "id", "cedula");
             return View();
         }
 
-        // POST: /usuario/Create
+        // POST: /proyecto/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,cedula,nombre,apellido,edad,telefono,usuario1,contrasenia,Tipo_Usuario,correo")] Usuario usuario)
+        public ActionResult Create([Bind(Include="id,nombre,fecha_inicio,fecha_fin,etapa,Cargo_id,Usuario_id")] Proyecto proyecto)
         {
             if (ModelState.IsValid)
             {
-                String usu = (string)(Session["Usuario"]);
-                db.registrarUsuDirector(usuario.cedula, usuario.nombre, usuario.apellido, usuario.edad,
-                    usuario.telefono, usu, usuario.contrasenia, 1, usuario.correo);
+                db.crearProyecto(proyecto.nombre, proyecto.fecha_inicio, proyecto.fecha_fin, 
+                    proyecto.etapa, proyecto.Cargo_id, proyecto.Usuario_id);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Tipo_Usuario = new SelectList(db.Tipo_Usuario, "id", "tipo", usuario.Tipo_Usuario);
-            return View(usuario);
+            ViewBag.Cargo_id = new SelectList(db.Cargo, "id", "nombre", proyecto.Cargo_id);
+            ViewBag.Usuario_id = new SelectList(db.Usuario, "id", "cedula", proyecto.Usuario_id);
+            return View(proyecto);
         }
 
-        // GET: /usuario/Edit/5
+        // GET: /proyecto/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Proyecto proyecto = db.Proyecto.Find(id);
+            if (proyecto == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Tipo_Usuario = new SelectList(db.Tipo_Usuario, "id", "tipo", usuario.Tipo_Usuario);
-            return View(usuario);
+            ViewBag.Cargo_id = new SelectList(db.Cargo, "id", "nombre", proyecto.Cargo_id);
+            ViewBag.Usuario_id = new SelectList(db.Usuario, "id", "cedula", proyecto.Usuario_id);
+            return View(proyecto);
         }
 
-        // POST: /usuario/Edit/5
+        // POST: /proyecto/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,cedula,nombre,apellido,edad,telefono,usuario1,contrasenia,Tipo_Usuario,correo")] Usuario usuario)
+        public ActionResult Edit([Bind(Include="id,nombre,fecha_inicio,fecha_fin,etapa,Cargo_id,Usuario_id")] Proyecto proyecto)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
+                db.editarProyecto(proyecto.id, proyecto.nombre, proyecto.fecha_inicio, proyecto.fecha_fin,
+                    proyecto.etapa, proyecto.Cargo_id, proyecto.Usuario_id);
                 return RedirectToAction("Index");
             }
-            ViewBag.Tipo_Usuario = new SelectList(db.Tipo_Usuario, "id", "tipo", usuario.Tipo_Usuario);
-            return View(usuario);
+            ViewBag.Cargo_id = new SelectList(db.Cargo, "id", "nombre", proyecto.Cargo_id);
+            ViewBag.Usuario_id = new SelectList(db.Usuario, "id", "cedula", proyecto.Usuario_id);
+            return View(proyecto);
         }
 
-        // GET: /usuario/Delete/5
+        // GET: /proyecto/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Proyecto proyecto = db.Proyecto.Find(id);
+            if (proyecto == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(proyecto);
         }
 
-        // POST: /usuario/Delete/5
+        // POST: /proyecto/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Usuario usuario = db.Usuario.Find(id);
-            db.Usuario.Remove(usuario);
-            db.SaveChanges();
+            db.eliminarProyecto(id);
             return RedirectToAction("Index");
         }
 

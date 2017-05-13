@@ -26,7 +26,7 @@ namespace Platform.Entity.Entity
         public string apellido { get; set; }
         public int edad { get; set; }
         public string telefono { get; set; }
-        public string usuario { get; set; }
+        public string usuario1 { get; set; }
         public string contrasenia { get; set; }
         public int Tipo_Usuario { get; set; }
         public string correo { get; set; }

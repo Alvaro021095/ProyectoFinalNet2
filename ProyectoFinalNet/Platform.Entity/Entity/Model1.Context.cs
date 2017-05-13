@@ -15,10 +15,10 @@ namespace Platform.Entity.Entity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ProyNet2Entities : DbContext
+    public partial class ProyNet2Entities1 : DbContext
     {
-        public ProyNet2Entities()
-            : base("name=ProyNet2Entities")
+        public ProyNet2Entities1()
+            : base("name=ProyNet2Entities1")
         {
         }
     

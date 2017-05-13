@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Platform.Entity.Entity.Proyecto>
+﻿@model IEnumerable<Platform.Entity.Entity.Actividad>
 
 @{
     ViewBag.Title = "Index";
@@ -21,13 +21,13 @@
             @Html.DisplayNameFor(model => model.fecha_fin)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.etapa)
+            @Html.DisplayNameFor(model => model.descripcion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cargo.nombre)
+            @Html.DisplayNameFor(model => model.Integrante.id)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Usuario.cedula)
+            @Html.DisplayNameFor(model => model.Proyecto.nombre)
         </th>
         <th></th>
     </tr>
@@ -44,13 +44,13 @@
             @Html.DisplayFor(modelItem => item.fecha_fin)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.etapa)
+            @Html.DisplayFor(modelItem => item.descripcion)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cargo.nombre)
+            @Html.DisplayFor(modelItem => item.Integrante.id)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Usuario.cedula)
+            @Html.DisplayFor(modelItem => item.Proyecto.nombre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

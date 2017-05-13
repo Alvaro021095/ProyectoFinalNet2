@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1537cb7b90c34671b92179e922467d27" Name="Diagram1">
+      <Diagram DiagramId="1c1efe476b8b414c8fe3fb793bec3959" Name="Diagram1">
         <EntityTypeShape EntityType="ProyNet2Model.Actividad" Width="1.5" PointX="11.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyNet2Model.Cargo" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="ProyNet2Model.Integrante" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />

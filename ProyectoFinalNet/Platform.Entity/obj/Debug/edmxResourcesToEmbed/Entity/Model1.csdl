@@ -271,7 +271,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ProyNet2Entities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ProyNet2Entities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Actividad" EntityType="Self.Actividad" />
     <EntitySet Name="Cargo" EntityType="Self.Cargo" />
     <EntitySet Name="Integrante" EntityType="Self.Integrante" />

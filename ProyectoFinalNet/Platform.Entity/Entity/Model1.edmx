@@ -719,7 +719,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProyNet2Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ProyNet2Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actividad" EntityType="Self.Actividad" />
           <EntitySet Name="Cargo" EntityType="Self.Cargo" />
           <EntitySet Name="Integrante" EntityType="Self.Integrante" />
@@ -915,7 +915,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProyNet2ModelStoreContainer" CdmEntityContainer="ProyNet2Entities">
+        <EntityContainerMapping StorageEntityContainer="ProyNet2ModelStoreContainer" CdmEntityContainer="ProyNet2Entities1">
           <EntitySetMapping Name="Actividad">
             <EntityTypeMapping TypeName="ProyNet2Model.Actividad">
               <MappingFragment StoreEntitySet="Actividad">

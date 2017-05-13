@@ -10,114 +10,104 @@ using Platform.Entity.Entity;
 
 namespace ProyectoFinalNet.Controllers
 {
-    public class usuarioController : Controller
+    public class tareaController : Controller
     {
         private ProyNet2Entities1 db = new ProyNet2Entities1();
 
-        // GET: /usuario/
+        // GET: /tarea/
         public ActionResult Index()
         {
-            var usuario = db.Usuario.Include(u => u.Tipo_Usuario1);
-            return View(usuario.ToList());
+            return View(db.Tarea.ToList());
         }
 
-        // GET: /usuario/Details/5
+        // GET: /tarea/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Tarea tarea = db.Tarea.Find(id);
+            if (tarea == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(tarea);
         }
 
-        // GET: /usuario/Create
+        // GET: /tarea/Create
         public ActionResult Create()
         {
-            ViewBag.Tipo_Usuario = new SelectList(db.Tipo_Usuario, "id", "tipo");
             return View();
         }
 
-        // POST: /usuario/Create
+        // POST: /tarea/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,cedula,nombre,apellido,edad,telefono,usuario1,contrasenia,Tipo_Usuario,correo")] Usuario usuario)
+        public ActionResult Create([Bind(Include="id,nombre,fecha_inicio,fecha_fin,porcentaje,estado")] Tarea tarea)
         {
             if (ModelState.IsValid)
             {
-                String usu = (string)(Session["Usuario"]);
-                db.registrarUsuDirector(usuario.cedula, usuario.nombre, usuario.apellido, usuario.edad,
-                    usuario.telefono, usu, usuario.contrasenia, 1, usuario.correo);
+                db.crearTarea(tarea.nombre, tarea.fecha_inicio, tarea.fecha_fin, tarea.porcentaje, tarea.estado);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Tipo_Usuario = new SelectList(db.Tipo_Usuario, "id", "tipo", usuario.Tipo_Usuario);
-            return View(usuario);
+            return View(tarea);
         }
 
-        // GET: /usuario/Edit/5
+        // GET: /tarea/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Tarea tarea = db.Tarea.Find(id);
+            if (tarea == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Tipo_Usuario = new SelectList(db.Tipo_Usuario, "id", "tipo", usuario.Tipo_Usuario);
-            return View(usuario);
+            return View(tarea);
         }
 
-        // POST: /usuario/Edit/5
+        // POST: /tarea/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,cedula,nombre,apellido,edad,telefono,usuario1,contrasenia,Tipo_Usuario,correo")] Usuario usuario)
+        public ActionResult Edit([Bind(Include="id,nombre,fecha_inicio,fecha_fin,porcentaje,estado")] Tarea tarea)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
-                db.SaveChanges();
+                db.editarTarea(tarea.id, tarea.nombre, tarea.fecha_inicio, tarea.fecha_fin, tarea.porcentaje, tarea.estado);
                 return RedirectToAction("Index");
             }
-            ViewBag.Tipo_Usuario = new SelectList(db.Tipo_Usuario, "id", "tipo", usuario.Tipo_Usuario);
-            return View(usuario);
+            return View(tarea);
         }
 
-        // GET: /usuario/Delete/5
+        // GET: /tarea/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuario.Find(id);
-            if (usuario == null)
+            Tarea tarea = db.Tarea.Find(id);
+            if (tarea == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(tarea);
         }
 
-        // POST: /usuario/Delete/5
+        // POST: /tarea/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Usuario usuario = db.Usuario.Find(id);
-            db.Usuario.Remove(usuario);
-            db.SaveChanges();
+            db.eliminarTarea(id);
             return RedirectToAction("Index");
         }
 
