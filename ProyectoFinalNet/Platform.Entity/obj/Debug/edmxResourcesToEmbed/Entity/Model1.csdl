@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoNet2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Actividad">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Proyecto_id" Type="Int32" Nullable="false" />
+    <Property Name="Integrante_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Integrante" Relationship="Self.Actividad_Integrante_FK" FromRole="Actividad" ToRole="Integrante" />
+    <NavigationProperty Name="Proyecto" Relationship="Self.Actividad_Proyecto_FK" FromRole="Actividad" ToRole="Proyecto" />
+    <NavigationProperty Name="Recurso_Tarea" Relationship="Self.Recurso_Tarea_Actividad_FK" FromRole="Actividad" ToRole="Recurso_Tarea" />
+  </EntityType>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="salario" Type="Double" Nullable="false" />
+    <Property Name="horario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Integrante" Relationship="Self.Integrante_Cargo_FK" FromRole="Cargo" ToRole="Integrante" />
+    <NavigationProperty Name="Proyecto" Relationship="Self.Proyecto_Cargo_FK" FromRole="Cargo" ToRole="Proyecto" />
+  </EntityType>
+  <EntityType Name="Integrante">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Proyecto_id" Type="Int32" Nullable="false" />
+    <Property Name="Cargo_id" Type="Int32" Nullable="false" />
+    <Property Name="Usuario_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Actividad" Relationship="Self.Actividad_Integrante_FK" FromRole="Integrante" ToRole="Actividad" />
+    <NavigationProperty Name="Cargo" Relationship="Self.Integrante_Cargo_FK" FromRole="Integrante" ToRole="Cargo" />
+    <NavigationProperty Name="Proyecto" Relationship="Self.Integrante_Proyecto_FK" FromRole="Integrante" ToRole="Proyecto" />
+    <NavigationProperty Name="Usuario" Relationship="Self.Integrante_Usuario_FK" FromRole="Integrante" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Proyecto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="etapa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cargo_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Actividad" Relationship="Self.Actividad_Proyecto_FK" FromRole="Proyecto" ToRole="Actividad" />
+    <NavigationProperty Name="Cargo" Relationship="Self.Proyecto_Cargo_FK" FromRole="Proyecto" ToRole="Cargo" />
+    <NavigationProperty Name="Integrante" Relationship="Self.Integrante_Proyecto_FK" FromRole="Proyecto" ToRole="Integrante" />
+    <NavigationProperty Name="Reunion" Relationship="Self.Reunion_Proyecto_FK" FromRole="Proyecto" ToRole="Reunion" />
+  </EntityType>
+  <EntityType Name="Recurso">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Recurso_Tarea" Relationship="Self.Recurso_Tarea_Recurso_FK" FromRole="Recurso" ToRole="Recurso_Tarea" />
+  </EntityType>
+  <EntityType Name="Recurso_Tarea">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Actividad_id" Type="Int32" Nullable="false" />
+    <Property Name="Tarea_id" Type="Int32" Nullable="false" />
+    <Property Name="Recurso_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Actividad" Relationship="Self.Recurso_Tarea_Actividad_FK" FromRole="Recurso_Tarea" ToRole="Actividad" />
+    <NavigationProperty Name="Recurso" Relationship="Self.Recurso_Tarea_Recurso_FK" FromRole="Recurso_Tarea" ToRole="Recurso" />
+    <NavigationProperty Name="Tarea" Relationship="Self.Recurso_Tarea_Tarea_FK" FromRole="Recurso_Tarea" ToRole="Tarea" />
+  </EntityType>
+  <EntityType Name="Reunion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lugar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tematica" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Proyecto_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Proyecto" Relationship="Self.Reunion_Proyecto_FK" FromRole="Reunion" ToRole="Proyecto" />
+  </EntityType>
+  <EntityType Name="Tarea">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha_inicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="porcentaje" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Recurso_Tarea" Relationship="Self.Recurso_Tarea_Tarea_FK" FromRole="Tarea" ToRole="Recurso_Tarea" />
+  </EntityType>
+  <EntityType Name="Tipo_Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Usuario" Relationship="Self.TipoUsu_Usuario_FK" FromRole="Tipo_Usuario" ToRole="Usuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cedula" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="edad" Type="Int32" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="usuario1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="contrasenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tipo_Usuario" Type="Int32" Nullable="false" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Integrante" Relationship="Self.Integrante_Usuario_FK" FromRole="Usuario" ToRole="Integrante" />
+    <NavigationProperty Name="Tipo_Usuario1" Relationship="Self.TipoUsu_Usuario_FK" FromRole="Usuario" ToRole="Tipo_Usuario" />
+  </EntityType>
+  <Association Name="Actividad_Integrante_FK">
+    <End Role="Integrante" Type="Self.Integrante" Multiplicity="1" />
+    <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Integrante">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Actividad">
+        <PropertyRef Name="Integrante_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Actividad_Proyecto_FK">
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+    <End Role="Actividad" Type="Self.Actividad" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyecto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Actividad">
+        <PropertyRef Name="Proyecto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Recurso_Tarea_Actividad_FK">
+    <End Role="Actividad" Type="Self.Actividad" Multiplicity="1" />
+    <End Role="Recurso_Tarea" Type="Self.Recurso_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Actividad">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recurso_Tarea">
+        <PropertyRef Name="Actividad_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Integrante_Cargo_FK">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+    <End Role="Integrante" Type="Self.Integrante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Integrante">
+        <PropertyRef Name="Cargo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Proyecto_Cargo_FK">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Proyecto">
+        <PropertyRef Name="Cargo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Integrante_Proyecto_FK">
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+    <End Role="Integrante" Type="Self.Integrante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyecto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Integrante">
+        <PropertyRef Name="Proyecto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Integrante_Usuario_FK">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Integrante" Type="Self.Integrante" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Integrante">
+        <PropertyRef Name="Usuario_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Reunion_Proyecto_FK">
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="1" />
+    <End Role="Reunion" Type="Self.Reunion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyecto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Reunion">
+        <PropertyRef Name="Proyecto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Recurso_Tarea_Recurso_FK">
+    <End Role="Recurso" Type="Self.Recurso" Multiplicity="1" />
+    <End Role="Recurso_Tarea" Type="Self.Recurso_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recurso">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recurso_Tarea">
+        <PropertyRef Name="Recurso_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Recurso_Tarea_Tarea_FK">
+    <End Role="Tarea" Type="Self.Tarea" Multiplicity="1" />
+    <End Role="Recurso_Tarea" Type="Self.Recurso_Tarea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tarea">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recurso_Tarea">
+        <PropertyRef Name="Tarea_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TipoUsu_Usuario_FK">
+    <End Role="Tipo_Usuario" Type="Self.Tipo_Usuario" Multiplicity="1" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Tipo_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProyectoNet2Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Actividad" EntityType="Self.Actividad" />
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" />
+    <EntitySet Name="Integrante" EntityType="Self.Integrante" />
+    <EntitySet Name="Proyecto" EntityType="Self.Proyecto" />
+    <EntitySet Name="Recurso" EntityType="Self.Recurso" />
+    <EntitySet Name="Recurso_Tarea" EntityType="Self.Recurso_Tarea" />
+    <EntitySet Name="Reunion" EntityType="Self.Reunion" />
+    <EntitySet Name="Tarea" EntityType="Self.Tarea" />
+    <EntitySet Name="Tipo_Usuario" EntityType="Self.Tipo_Usuario" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="Actividad_Integrante_FK" Association="Self.Actividad_Integrante_FK">
+      <End Role="Integrante" EntitySet="Integrante" />
+      <End Role="Actividad" EntitySet="Actividad" />
+    </AssociationSet>
+    <AssociationSet Name="Actividad_Proyecto_FK" Association="Self.Actividad_Proyecto_FK">
+      <End Role="Proyecto" EntitySet="Proyecto" />
+      <End Role="Actividad" EntitySet="Actividad" />
+    </AssociationSet>
+    <AssociationSet Name="Recurso_Tarea_Actividad_FK" Association="Self.Recurso_Tarea_Actividad_FK">
+      <End Role="Actividad" EntitySet="Actividad" />
+      <End Role="Recurso_Tarea" EntitySet="Recurso_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="Integrante_Cargo_FK" Association="Self.Integrante_Cargo_FK">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Integrante" EntitySet="Integrante" />
+    </AssociationSet>
+    <AssociationSet Name="Proyecto_Cargo_FK" Association="Self.Proyecto_Cargo_FK">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Proyecto" EntitySet="Proyecto" />
+    </AssociationSet>
+    <AssociationSet Name="Integrante_Proyecto_FK" Association="Self.Integrante_Proyecto_FK">
+      <End Role="Proyecto" EntitySet="Proyecto" />
+      <End Role="Integrante" EntitySet="Integrante" />
+    </AssociationSet>
+    <AssociationSet Name="Integrante_Usuario_FK" Association="Self.Integrante_Usuario_FK">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Integrante" EntitySet="Integrante" />
+    </AssociationSet>
+    <AssociationSet Name="Reunion_Proyecto_FK" Association="Self.Reunion_Proyecto_FK">
+      <End Role="Proyecto" EntitySet="Proyecto" />
+      <End Role="Reunion" EntitySet="Reunion" />
+    </AssociationSet>
+    <AssociationSet Name="Recurso_Tarea_Recurso_FK" Association="Self.Recurso_Tarea_Recurso_FK">
+      <End Role="Recurso" EntitySet="Recurso" />
+      <End Role="Recurso_Tarea" EntitySet="Recurso_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="Recurso_Tarea_Tarea_FK" Association="Self.Recurso_Tarea_Tarea_FK">
+      <End Role="Tarea" EntitySet="Tarea" />
+      <End Role="Recurso_Tarea" EntitySet="Recurso_Tarea" />
+    </AssociationSet>
+    <AssociationSet Name="TipoUsu_Usuario_FK" Association="Self.TipoUsu_Usuario_FK">
+      <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
+    </AssociationSet>
+    <FunctionImport Name="crearProyecto">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="fecha_ini" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+      <Parameter Name="etapa" Mode="In" Type="String" />
+      <Parameter Name="cargoId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="editarProyecto">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="fecha_ini" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+      <Parameter Name="etapa" Mode="In" Type="String" />
+      <Parameter Name="cargoId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="eliminarProyecto">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="loginDirector" ReturnType="Collection(ProyectoNet2Model.loginDirector_Result)">
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="contra" Mode="In" Type="String" />
+      <Parameter Name="tipoUsuario" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="registrarUsuDirector">
+      <Parameter Name="cedula" Mode="In" Type="String" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="apellido" Mode="In" Type="String" />
+      <Parameter Name="edad" Mode="In" Type="Int32" />
+      <Parameter Name="telefono" Mode="In" Type="String" />
+      <Parameter Name="usuario" Mode="In" Type="String" />
+      <Parameter Name="contra" Mode="In" Type="String" />
+      <Parameter Name="tipoUsuario" Mode="In" Type="Int32" />
+      <Parameter Name="correo" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="loginDirector_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="cedula" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="apellido" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="edad" Nullable="false" />
+    <Property Type="String" Name="telefono" Nullable="false" MaxLength="40" />
+    <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="contrasenia" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Tipo_Usuario" Nullable="false" />
+    <Property Type="String" Name="correo" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="id1" Nullable="false" />
+    <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>
