@@ -10,3 +10,14 @@ c:\users\loter\documents\visual studio 2013\Projects\ProyectoFinalNet\Platform.E
 c:\users\loter\documents\visual studio 2013\Projects\ProyectoFinalNet\Platform.Entity\obj\Debug\Platform.Entity.csprojResolveAssemblyReference.cache
 c:\users\loter\documents\visual studio 2013\Projects\ProyectoFinalNet\Platform.Entity\obj\Debug\Platform.Entity.dll
 c:\users\loter\documents\visual studio 2013\Projects\ProyectoFinalNet\Platform.Entity\obj\Debug\Platform.Entity.pdb
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\Platform.Entity.dll.config
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\Platform.Entity.dll
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\Platform.Entity.pdb
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\EntityFramework.dll
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\EntityFramework.xml
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\es\EntityFramework.resources.dll
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\es\EntityFramework.SqlServer.resources.dll
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\obj\Debug\Platform.Entity.dll
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\obj\Debug\Platform.Entity.pdb

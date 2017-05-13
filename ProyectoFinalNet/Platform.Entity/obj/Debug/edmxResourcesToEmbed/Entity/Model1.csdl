@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="ProyectoNet2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="ProyNet2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Actividad">
     <Key>
       <PropertyRef Name="id" />
@@ -49,10 +49,12 @@
     <Property Name="fecha_fin" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="etapa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Cargo_id" Type="Int32" Nullable="false" />
+    <Property Name="Usuario_id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Actividad" Relationship="Self.Actividad_Proyecto_FK" FromRole="Proyecto" ToRole="Actividad" />
     <NavigationProperty Name="Cargo" Relationship="Self.Proyecto_Cargo_FK" FromRole="Proyecto" ToRole="Cargo" />
     <NavigationProperty Name="Integrante" Relationship="Self.Integrante_Proyecto_FK" FromRole="Proyecto" ToRole="Integrante" />
     <NavigationProperty Name="Reunion" Relationship="Self.Reunion_Proyecto_FK" FromRole="Proyecto" ToRole="Reunion" />
+    <NavigationProperty Name="Usuario" Relationship="Self.Usuario_Proyecto_FK" FromRole="Proyecto" ToRole="Usuario" />
   </EntityType>
   <EntityType Name="Recurso">
     <Key>
@@ -120,8 +122,9 @@
     <Property Name="usuario1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="contrasenia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Tipo_Usuario" Type="Int32" Nullable="false" />
-    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="correo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Integrante" Relationship="Self.Integrante_Usuario_FK" FromRole="Usuario" ToRole="Integrante" />
+    <NavigationProperty Name="Proyecto" Relationship="Self.Usuario_Proyecto_FK" FromRole="Usuario" ToRole="Proyecto" />
     <NavigationProperty Name="Tipo_Usuario1" Relationship="Self.TipoUsu_Usuario_FK" FromRole="Usuario" ToRole="Tipo_Usuario" />
   </EntityType>
   <Association Name="Actividad_Integrante_FK">
@@ -220,6 +223,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Usuario_Proyecto_FK">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Proyecto" Type="Self.Proyecto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Proyecto">
+        <PropertyRef Name="Usuario_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="Recurso_Tarea_Recurso_FK">
     <End Role="Recurso" Type="Self.Recurso" Multiplicity="1" />
     <End Role="Recurso_Tarea" Type="Self.Recurso_Tarea" Multiplicity="*" />
@@ -256,7 +271,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ProyectoNet2Entities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ProyNet2Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Actividad" EntityType="Self.Actividad" />
     <EntitySet Name="Cargo" EntityType="Self.Cargo" />
     <EntitySet Name="Integrante" EntityType="Self.Integrante" />
@@ -299,6 +314,10 @@
       <End Role="Proyecto" EntitySet="Proyecto" />
       <End Role="Reunion" EntitySet="Reunion" />
     </AssociationSet>
+    <AssociationSet Name="Usuario_Proyecto_FK" Association="Self.Usuario_Proyecto_FK">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Proyecto" EntitySet="Proyecto" />
+    </AssociationSet>
     <AssociationSet Name="Recurso_Tarea_Recurso_FK" Association="Self.Recurso_Tarea_Recurso_FK">
       <End Role="Recurso" EntitySet="Recurso" />
       <End Role="Recurso_Tarea" EntitySet="Recurso_Tarea" />
@@ -311,12 +330,68 @@
       <End Role="Tipo_Usuario" EntitySet="Tipo_Usuario" />
       <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
+    <FunctionImport Name="crearActividad">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="fecha_ini" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+      <Parameter Name="integranteId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="crearIntegrante">
+      <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+      <Parameter Name="cargoId" Mode="In" Type="Int32" />
+      <Parameter Name="usuarioId" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="crearProyecto">
       <Parameter Name="nombre" Mode="In" Type="String" />
       <Parameter Name="fecha_ini" Mode="In" Type="DateTime" />
       <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
       <Parameter Name="etapa" Mode="In" Type="String" />
       <Parameter Name="cargoId" Mode="In" Type="Int32" />
+      <Parameter Name="directorId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="crearRecurso">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="ubicacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="crearReunion">
+      <Parameter Name="lugar" Mode="In" Type="String" />
+      <Parameter Name="tematica" Mode="In" Type="String" />
+      <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="crearTarea">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="fecha_ini" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+      <Parameter Name="porcentaje" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="createRecursoTarea">
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="actividadId" Mode="In" Type="Int32" />
+      <Parameter Name="tareaId" Mode="In" Type="Int32" />
+      <Parameter Name="recursoId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="descontarRecurso">
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="recursoId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="editarActividad">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="fecha_ini" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+      <Parameter Name="descripcion" Mode="In" Type="String" />
+      <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+      <Parameter Name="integranteId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="editarIntegrante">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+      <Parameter Name="cargoId" Mode="In" Type="Int32" />
+      <Parameter Name="usuarioId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="editarProyecto">
       <Parameter Name="id" Mode="In" Type="Int32" />
@@ -325,14 +400,55 @@
       <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
       <Parameter Name="etapa" Mode="In" Type="String" />
       <Parameter Name="cargoId" Mode="In" Type="Int32" />
+      <Parameter Name="directorId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="editarRecurso">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="ubicacion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="editarRecursoTarea">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="cantidad" Mode="In" Type="Int32" />
+      <Parameter Name="actividadId" Mode="In" Type="Int32" />
+      <Parameter Name="tareaId" Mode="In" Type="Int32" />
+      <Parameter Name="recursoId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="editarReunion">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="lugar" Mode="In" Type="String" />
+      <Parameter Name="tematica" Mode="In" Type="String" />
+      <Parameter Name="proyectoId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="editarTarea">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="fecha_ini" Mode="In" Type="DateTime" />
+      <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+      <Parameter Name="porcentaje" Mode="In" Type="String" />
+      <Parameter Name="estado" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="eliminarActividad">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="eliminarIntegrante">
+      <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="eliminarProyecto">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="loginDirector" ReturnType="Collection(ProyectoNet2Model.loginDirector_Result)">
-      <Parameter Name="usuario" Mode="In" Type="String" />
-      <Parameter Name="contra" Mode="In" Type="String" />
-      <Parameter Name="tipoUsuario" Mode="In" Type="String" />
+    <FunctionImport Name="eliminarRecurso">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="eliminarRecursoTarea">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="eliminarReunion">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="eliminarTarea">
+      <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="registrarUsuDirector">
       <Parameter Name="cedula" Mode="In" Type="String" />
@@ -346,18 +462,4 @@
       <Parameter Name="correo" Mode="In" Type="String" />
     </FunctionImport>
   </EntityContainer>
-  <ComplexType Name="loginDirector_Result">
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="String" Name="cedula" Nullable="false" MaxLength="20" />
-    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="apellido" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="edad" Nullable="false" />
-    <Property Type="String" Name="telefono" Nullable="false" MaxLength="40" />
-    <Property Type="String" Name="usuario" Nullable="false" MaxLength="50" />
-    <Property Type="String" Name="contrasenia" Nullable="false" MaxLength="50" />
-    <Property Type="Int32" Name="Tipo_Usuario" Nullable="false" />
-    <Property Type="String" Name="correo" Nullable="true" MaxLength="50" />
-    <Property Type="Int32" Name="id1" Nullable="false" />
-    <Property Type="String" Name="tipo" Nullable="false" MaxLength="50" />
-  </ComplexType>
 </Schema>

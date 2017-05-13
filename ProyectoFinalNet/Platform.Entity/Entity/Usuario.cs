@@ -17,6 +17,7 @@ namespace Platform.Entity.Entity
         public Usuario()
         {
             this.Integrante = new HashSet<Integrante>();
+            this.Proyecto = new HashSet<Proyecto>();
         }
     
         public int id { get; set; }
@@ -25,12 +26,13 @@ namespace Platform.Entity.Entity
         public string apellido { get; set; }
         public int edad { get; set; }
         public string telefono { get; set; }
-        public string usuario1 { get; set; }
+        public string usuario { get; set; }
         public string contrasenia { get; set; }
         public int Tipo_Usuario { get; set; }
         public string correo { get; set; }
     
         public virtual ICollection<Integrante> Integrante { get; set; }
+        public virtual ICollection<Proyecto> Proyecto { get; set; }
         public virtual Tipo_Usuario Tipo_Usuario1 { get; set; }
     }
 }

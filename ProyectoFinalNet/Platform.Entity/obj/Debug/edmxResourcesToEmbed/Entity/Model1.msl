@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ProyectoNet2ModelStoreContainer" CdmEntityContainer="ProyectoNet2Entities1">
+  <EntityContainerMapping StorageEntityContainer="ProyNet2ModelStoreContainer" CdmEntityContainer="ProyNet2Entities">
     <EntitySetMapping Name="Actividad">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Actividad">
+      <EntityTypeMapping TypeName="ProyNet2Model.Actividad">
         <MappingFragment StoreEntitySet="Actividad">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -15,7 +15,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Cargo">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Cargo">
+      <EntityTypeMapping TypeName="ProyNet2Model.Cargo">
         <MappingFragment StoreEntitySet="Cargo">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -25,7 +25,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Integrante">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Integrante">
+      <EntityTypeMapping TypeName="ProyNet2Model.Integrante">
         <MappingFragment StoreEntitySet="Integrante">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Proyecto_id" ColumnName="Proyecto_id" />
@@ -35,7 +35,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Proyecto">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Proyecto">
+      <EntityTypeMapping TypeName="ProyNet2Model.Proyecto">
         <MappingFragment StoreEntitySet="Proyecto">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -43,11 +43,12 @@
           <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
           <ScalarProperty Name="etapa" ColumnName="etapa" />
           <ScalarProperty Name="Cargo_id" ColumnName="Cargo_id" />
+          <ScalarProperty Name="Usuario_id" ColumnName="Usuario_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Recurso">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Recurso">
+      <EntityTypeMapping TypeName="ProyNet2Model.Recurso">
         <MappingFragment StoreEntitySet="Recurso">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -57,7 +58,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Recurso_Tarea">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Recurso_Tarea">
+      <EntityTypeMapping TypeName="ProyNet2Model.Recurso_Tarea">
         <MappingFragment StoreEntitySet="Recurso_Tarea">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="cantidad" ColumnName="cantidad" />
@@ -68,7 +69,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Reunion">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Reunion">
+      <EntityTypeMapping TypeName="ProyNet2Model.Reunion">
         <MappingFragment StoreEntitySet="Reunion">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="lugar" ColumnName="lugar" />
@@ -78,7 +79,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tarea">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Tarea">
+      <EntityTypeMapping TypeName="ProyNet2Model.Tarea">
         <MappingFragment StoreEntitySet="Tarea">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -90,7 +91,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tipo_Usuario">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Tipo_Usuario">
+      <EntityTypeMapping TypeName="ProyNet2Model.Tipo_Usuario">
         <MappingFragment StoreEntitySet="Tipo_Usuario">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="tipo" ColumnName="tipo" />
@@ -98,7 +99,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Usuario">
-      <EntityTypeMapping TypeName="ProyectoNet2Model.Usuario">
+      <EntityTypeMapping TypeName="ProyNet2Model.Usuario">
         <MappingFragment StoreEntitySet="Usuario">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="cedula" ColumnName="cedula" />
@@ -113,27 +114,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="crearProyecto" FunctionName="ProyectoNet2Model.Store.crearProyecto" />
-    <FunctionImportMapping FunctionImportName="editarProyecto" FunctionName="ProyectoNet2Model.Store.editarProyecto" />
-    <FunctionImportMapping FunctionImportName="eliminarProyecto" FunctionName="ProyectoNet2Model.Store.eliminarProyecto" />
-    <FunctionImportMapping FunctionImportName="loginDirector" FunctionName="ProyectoNet2Model.Store.loginDirector">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="ProyectoNet2Model.loginDirector_Result">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="cedula" ColumnName="cedula" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apellido" ColumnName="apellido" />
-          <ScalarProperty Name="edad" ColumnName="edad" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
-          <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
-          <ScalarProperty Name="Tipo_Usuario" ColumnName="Tipo_Usuario" />
-          <ScalarProperty Name="correo" ColumnName="correo" />
-          <ScalarProperty Name="id1" ColumnName="id1" />
-          <ScalarProperty Name="tipo" ColumnName="tipo" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="registrarUsuDirector" FunctionName="ProyectoNet2Model.Store.registrarUsuDirector" />
+    <FunctionImportMapping FunctionImportName="crearActividad" FunctionName="ProyNet2Model.Store.crearActividad" />
+    <FunctionImportMapping FunctionImportName="crearIntegrante" FunctionName="ProyNet2Model.Store.crearIntegrante" />
+    <FunctionImportMapping FunctionImportName="crearProyecto" FunctionName="ProyNet2Model.Store.crearProyecto" />
+    <FunctionImportMapping FunctionImportName="crearRecurso" FunctionName="ProyNet2Model.Store.crearRecurso" />
+    <FunctionImportMapping FunctionImportName="crearReunion" FunctionName="ProyNet2Model.Store.crearReunion" />
+    <FunctionImportMapping FunctionImportName="crearTarea" FunctionName="ProyNet2Model.Store.crearTarea" />
+    <FunctionImportMapping FunctionImportName="createRecursoTarea" FunctionName="ProyNet2Model.Store.createRecursoTarea" />
+    <FunctionImportMapping FunctionImportName="descontarRecurso" FunctionName="ProyNet2Model.Store.descontarRecurso" />
+    <FunctionImportMapping FunctionImportName="editarActividad" FunctionName="ProyNet2Model.Store.editarActividad" />
+    <FunctionImportMapping FunctionImportName="editarIntegrante" FunctionName="ProyNet2Model.Store.editarIntegrante" />
+    <FunctionImportMapping FunctionImportName="editarProyecto" FunctionName="ProyNet2Model.Store.editarProyecto" />
+    <FunctionImportMapping FunctionImportName="editarRecurso" FunctionName="ProyNet2Model.Store.editarRecurso" />
+    <FunctionImportMapping FunctionImportName="editarRecursoTarea" FunctionName="ProyNet2Model.Store.editarRecursoTarea" />
+    <FunctionImportMapping FunctionImportName="editarReunion" FunctionName="ProyNet2Model.Store.editarReunion" />
+    <FunctionImportMapping FunctionImportName="editarTarea" FunctionName="ProyNet2Model.Store.editarTarea" />
+    <FunctionImportMapping FunctionImportName="eliminarActividad" FunctionName="ProyNet2Model.Store.eliminarActividad" />
+    <FunctionImportMapping FunctionImportName="eliminarIntegrante" FunctionName="ProyNet2Model.Store.eliminarIntegrante" />
+    <FunctionImportMapping FunctionImportName="eliminarProyecto" FunctionName="ProyNet2Model.Store.eliminarProyecto" />
+    <FunctionImportMapping FunctionImportName="eliminarRecurso" FunctionName="ProyNet2Model.Store.eliminarRecurso" />
+    <FunctionImportMapping FunctionImportName="eliminarRecursoTarea" FunctionName="ProyNet2Model.Store.eliminarRecursoTarea" />
+    <FunctionImportMapping FunctionImportName="eliminarReunion" FunctionName="ProyNet2Model.Store.eliminarReunion" />
+    <FunctionImportMapping FunctionImportName="eliminarTarea" FunctionName="ProyNet2Model.Store.eliminarTarea" />
+    <FunctionImportMapping FunctionImportName="registrarUsuDirector" FunctionName="ProyNet2Model.Store.registrarUsuDirector" />
   </EntityContainerMapping>
 </Mapping>

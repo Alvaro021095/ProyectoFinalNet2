@@ -160,7 +160,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\proyectoController.cs" />
     <Compile Include="Controllers\usuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -226,6 +225,11 @@
     <Content Include="Views\proyecto\Details.cshtml" />
     <Content Include="Views\proyecto\Edit.cshtml" />
     <Content Include="Views\proyecto\Index.cshtml" />
+    <Content Include="Views\tarea\Create.cshtml" />
+    <Content Include="Views\tarea\Delete.cshtml" />
+    <Content Include="Views\tarea\Details.cshtml" />
+    <Content Include="Views\tarea\Edit.cshtml" />
+    <Content Include="Views\tarea\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,10 +27,12 @@ namespace Platform.Entity.Entity
         public System.DateTime fecha_fin { get; set; }
         public string etapa { get; set; }
         public int Cargo_id { get; set; }
+        public int Usuario_id { get; set; }
     
         public virtual ICollection<Actividad> Actividad { get; set; }
         public virtual Cargo Cargo { get; set; }
         public virtual ICollection<Integrante> Integrante { get; set; }
         public virtual ICollection<Reunion> Reunion { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }
