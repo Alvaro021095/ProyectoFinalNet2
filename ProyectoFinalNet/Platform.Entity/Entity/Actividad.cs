@@ -11,6 +11,7 @@ namespace Platform.Entity.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Actividad
     {
@@ -20,11 +21,17 @@ namespace Platform.Entity.Entity
         }
     
         public int id { get; set; }
+        [DisplayName("Nombre")]
         public string nombre { get; set; }
+        [DisplayName("Fecha Inicio")]
         public System.DateTime fecha_inicio { get; set; }
+        [DisplayName("Fecha Fin")]
         public System.DateTime fecha_fin { get; set; }
+        [DisplayName("Descripcion")]
         public string descripcion { get; set; }
+        [DisplayName("Proyecto")]
         public int Proyecto_id { get; set; }
+        [DisplayName("Integreante")]
         public int Integrante_id { get; set; }
     
         public virtual Integrante Integrante { get; set; }

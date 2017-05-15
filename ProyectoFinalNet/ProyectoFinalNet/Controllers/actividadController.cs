@@ -12,7 +12,7 @@ namespace ProyectoFinalNet.Controllers
 {
     public class actividadController : Controller
     {
-        private ProyNet2Entities1 db = new ProyNet2Entities1();
+        private ProyNet2Entities db = new ProyNet2Entities();
 
         // GET: /actividad/
         public ActionResult Index()

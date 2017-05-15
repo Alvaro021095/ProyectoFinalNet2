@@ -15,10 +15,10 @@ namespace Platform.Entity.Entity
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ProyNet2Entities1 : DbContext
+    public partial class ProyNet2Entities : DbContext
     {
-        public ProyNet2Entities1()
-            : base("name=ProyNet2Entities1")
+        public ProyNet2Entities()
+            : base("name=ProyNet2Entities")
         {
         }
     
@@ -65,6 +65,23 @@ namespace Platform.Entity.Entity
                 new ObjectParameter("integranteId", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("crearActividad", nombreParameter, fecha_iniParameter, fecha_finParameter, descripcionParameter, proyectoIdParameter, integranteIdParameter);
+        }
+    
+        public virtual int crearCargo(string nombre, Nullable<double> salario, string horario)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var salarioParameter = salario.HasValue ?
+                new ObjectParameter("salario", salario) :
+                new ObjectParameter("salario", typeof(double));
+    
+            var horarioParameter = horario != null ?
+                new ObjectParameter("horario", horario) :
+                new ObjectParameter("horario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("crearCargo", nombreParameter, salarioParameter, horarioParameter);
         }
     
         public virtual int crearIntegrante(Nullable<int> proyectoId, Nullable<int> cargoId, Nullable<int> usuarioId)
@@ -239,6 +256,27 @@ namespace Platform.Entity.Entity
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("editarActividad", idParameter, nombreParameter, fecha_iniParameter, fecha_finParameter, descripcionParameter, proyectoIdParameter, integranteIdParameter);
         }
     
+        public virtual int editarCargo(Nullable<int> id, string nombre, Nullable<double> salario, string horario)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("nombre", nombre) :
+                new ObjectParameter("nombre", typeof(string));
+    
+            var salarioParameter = salario.HasValue ?
+                new ObjectParameter("salario", salario) :
+                new ObjectParameter("salario", typeof(double));
+    
+            var horarioParameter = horario != null ?
+                new ObjectParameter("horario", horario) :
+                new ObjectParameter("horario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("editarCargo", idParameter, nombreParameter, salarioParameter, horarioParameter);
+        }
+    
         public virtual int editarIntegrante(Nullable<int> id, Nullable<int> proyectoId, Nullable<int> cargoId, Nullable<int> usuarioId)
         {
             var idParameter = id.HasValue ?
@@ -396,6 +434,15 @@ namespace Platform.Entity.Entity
                 new ObjectParameter("id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("eliminarActividad", idParameter);
+        }
+    
+        public virtual int eliminarCargo(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("eliminarCargo", idParameter);
         }
     
         public virtual int eliminarIntegrante(Nullable<int> id)

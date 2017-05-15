@@ -12,7 +12,7 @@ namespace ProyectoFinalNet.Controllers
 {
     public class usuarioController : Controller
     {
-        private ProyNet2Entities1 db = new ProyNet2Entities1();
+        private ProyNet2Entities db = new ProyNet2Entities();
 
         // GET: /usuario/
         public ActionResult Index()
@@ -53,8 +53,9 @@ namespace ProyectoFinalNet.Controllers
             if (ModelState.IsValid)
             {
                 String usu = (string)(Session["Usuario"]);
+                String pass = (string)(Session["Contrasenia"]);
                 db.registrarUsuDirector(usuario.cedula, usuario.nombre, usuario.apellido, usuario.edad,
-                    usuario.telefono, usu, usuario.contrasenia, 1, usuario.correo);
+                    usuario.telefono, usu, pass, 1, usuario.correo);
                 return RedirectToAction("Index");
             }
 

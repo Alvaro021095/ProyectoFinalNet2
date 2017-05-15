@@ -18,7 +18,7 @@ namespace Platform.Entity.Entity
         {
             this.Usuario = new HashSet<Usuario>();
         }
-    
+      
         public int id { get; set; }
         public string tipo { get; set; }
     

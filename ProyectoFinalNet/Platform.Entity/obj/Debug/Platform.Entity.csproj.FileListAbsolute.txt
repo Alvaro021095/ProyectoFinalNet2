@@ -21,3 +21,4 @@ C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\b
 C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\bin\Debug\es\EntityFramework.SqlServer.resources.dll
 C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\obj\Debug\Platform.Entity.dll
 C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\obj\Debug\Platform.Entity.pdb
+C:\Users\loter\Source\Repos\ProyectoFinalNet2\ProyectoFinalNet\Platform.Entity\obj\Debug\Platform.Entity.csprojResolveAssemblyReference.cache

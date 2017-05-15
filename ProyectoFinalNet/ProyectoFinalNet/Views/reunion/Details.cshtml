@@ -1,0 +1,42 @@
+﻿@model Platform.Entity.Entity.Reunion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Reunion</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.lugar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lugar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tematica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tematica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Proyecto.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Proyecto.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

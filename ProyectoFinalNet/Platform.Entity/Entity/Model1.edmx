@@ -260,6 +260,11 @@
           <Parameter Name="proyectoId" Type="int" Mode="In" />
           <Parameter Name="integranteId" Type="int" Mode="In" />
         </Function>
+        <Function Name="crearCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="salario" Type="float" Mode="In" />
+          <Parameter Name="horario" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="crearIntegrante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="proyectoId" Type="int" Mode="In" />
           <Parameter Name="cargoId" Type="int" Mode="In" />
@@ -309,6 +314,12 @@
           <Parameter Name="proyectoId" Type="int" Mode="In" />
           <Parameter Name="integranteId" Type="int" Mode="In" />
         </Function>
+        <Function Name="editarCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="salario" Type="float" Mode="In" />
+          <Parameter Name="horario" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="editarIntegrante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="proyectoId" Type="int" Mode="In" />
@@ -352,6 +363,9 @@
           <Parameter Name="estado" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="eliminarActividad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="eliminarCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="eliminarIntegrante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -719,7 +733,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ProyNet2Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ProyNet2Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Actividad" EntityType="Self.Actividad" />
           <EntitySet Name="Cargo" EntityType="Self.Cargo" />
           <EntitySet Name="Integrante" EntityType="Self.Integrante" />
@@ -786,6 +800,11 @@
             <Parameter Name="proyectoId" Mode="In" Type="Int32" />
             <Parameter Name="integranteId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="crearCargo">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="salario" Mode="In" Type="Double" />
+            <Parameter Name="horario" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="crearIntegrante">
             <Parameter Name="proyectoId" Mode="In" Type="Int32" />
             <Parameter Name="cargoId" Mode="In" Type="Int32" />
@@ -835,6 +854,12 @@
             <Parameter Name="proyectoId" Mode="In" Type="Int32" />
             <Parameter Name="integranteId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="editarCargo">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="salario" Mode="In" Type="Double" />
+            <Parameter Name="horario" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="editarIntegrante">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="proyectoId" Mode="In" Type="Int32" />
@@ -880,6 +905,9 @@
           <FunctionImport Name="eliminarActividad">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="eliminarCargo">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="eliminarIntegrante">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -915,7 +943,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProyNet2ModelStoreContainer" CdmEntityContainer="ProyNet2Entities1">
+        <EntityContainerMapping StorageEntityContainer="ProyNet2ModelStoreContainer" CdmEntityContainer="ProyNet2Entities">
           <EntitySetMapping Name="Actividad">
             <EntityTypeMapping TypeName="ProyNet2Model.Actividad">
               <MappingFragment StoreEntitySet="Actividad">
@@ -1030,6 +1058,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="crearActividad" FunctionName="ProyNet2Model.Store.crearActividad" />
+          <FunctionImportMapping FunctionImportName="crearCargo" FunctionName="ProyNet2Model.Store.crearCargo" />
           <FunctionImportMapping FunctionImportName="crearIntegrante" FunctionName="ProyNet2Model.Store.crearIntegrante" />
           <FunctionImportMapping FunctionImportName="crearProyecto" FunctionName="ProyNet2Model.Store.crearProyecto" />
           <FunctionImportMapping FunctionImportName="crearRecurso" FunctionName="ProyNet2Model.Store.crearRecurso" />
@@ -1038,6 +1067,7 @@
           <FunctionImportMapping FunctionImportName="createRecursoTarea" FunctionName="ProyNet2Model.Store.createRecursoTarea" />
           <FunctionImportMapping FunctionImportName="descontarRecurso" FunctionName="ProyNet2Model.Store.descontarRecurso" />
           <FunctionImportMapping FunctionImportName="editarActividad" FunctionName="ProyNet2Model.Store.editarActividad" />
+          <FunctionImportMapping FunctionImportName="editarCargo" FunctionName="ProyNet2Model.Store.editarCargo" />
           <FunctionImportMapping FunctionImportName="editarIntegrante" FunctionName="ProyNet2Model.Store.editarIntegrante" />
           <FunctionImportMapping FunctionImportName="editarProyecto" FunctionName="ProyNet2Model.Store.editarProyecto" />
           <FunctionImportMapping FunctionImportName="editarRecurso" FunctionName="ProyNet2Model.Store.editarRecurso" />
@@ -1045,6 +1075,7 @@
           <FunctionImportMapping FunctionImportName="editarReunion" FunctionName="ProyNet2Model.Store.editarReunion" />
           <FunctionImportMapping FunctionImportName="editarTarea" FunctionName="ProyNet2Model.Store.editarTarea" />
           <FunctionImportMapping FunctionImportName="eliminarActividad" FunctionName="ProyNet2Model.Store.eliminarActividad" />
+          <FunctionImportMapping FunctionImportName="eliminarCargo" FunctionName="ProyNet2Model.Store.eliminarCargo" />
           <FunctionImportMapping FunctionImportName="eliminarIntegrante" FunctionName="ProyNet2Model.Store.eliminarIntegrante" />
           <FunctionImportMapping FunctionImportName="eliminarProyecto" FunctionName="ProyNet2Model.Store.eliminarProyecto" />
           <FunctionImportMapping FunctionImportName="eliminarRecurso" FunctionName="ProyNet2Model.Store.eliminarRecurso" />

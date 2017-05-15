@@ -160,8 +160,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\actividadController.cs" />
+    <Compile Include="Controllers\cargoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\integranteController.cs" />
     <Compile Include="Controllers\proyectoController.cs" />
+    <Compile Include="Controllers\recursoController.cs" />
+    <Compile Include="Controllers\recursoTareaController.cs" />
+    <Compile Include="Controllers\reunionController.cs" />
     <Compile Include="Controllers\tareaController.cs" />
     <Compile Include="Controllers\usuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -238,6 +243,31 @@
     <Content Include="Views\actividad\Details.cshtml" />
     <Content Include="Views\actividad\Edit.cshtml" />
     <Content Include="Views\actividad\Index.cshtml" />
+    <Content Include="Views\cargo\Create.cshtml" />
+    <Content Include="Views\cargo\Delete.cshtml" />
+    <Content Include="Views\cargo\Details.cshtml" />
+    <Content Include="Views\cargo\Edit.cshtml" />
+    <Content Include="Views\cargo\Index.cshtml" />
+    <Content Include="Views\reunion\Create.cshtml" />
+    <Content Include="Views\reunion\Delete.cshtml" />
+    <Content Include="Views\reunion\Details.cshtml" />
+    <Content Include="Views\reunion\Edit.cshtml" />
+    <Content Include="Views\reunion\Index.cshtml" />
+    <Content Include="Views\recurso\Create.cshtml" />
+    <Content Include="Views\recurso\Delete.cshtml" />
+    <Content Include="Views\recurso\Details.cshtml" />
+    <Content Include="Views\recurso\Edit.cshtml" />
+    <Content Include="Views\recurso\Index.cshtml" />
+    <Content Include="Views\integrante\Create.cshtml" />
+    <Content Include="Views\integrante\Delete.cshtml" />
+    <Content Include="Views\integrante\Details.cshtml" />
+    <Content Include="Views\integrante\Edit.cshtml" />
+    <Content Include="Views\integrante\Index.cshtml" />
+    <Content Include="Views\recursoTarea\Create.cshtml" />
+    <Content Include="Views\recursoTarea\Delete.cshtml" />
+    <Content Include="Views\recursoTarea\Details.cshtml" />
+    <Content Include="Views\recursoTarea\Edit.cshtml" />
+    <Content Include="Views\recursoTarea\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

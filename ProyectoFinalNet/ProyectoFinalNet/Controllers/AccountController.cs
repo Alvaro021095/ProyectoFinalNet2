@@ -49,6 +49,7 @@ namespace ProyectoFinalNet.Controllers
                 if (user != null)
                 {
                     Session["Usuario"] = model.UserName;
+                    Session["Contrasenia"] = model.Password;
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }

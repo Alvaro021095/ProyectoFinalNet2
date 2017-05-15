@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Crear</h2>
 
 
 @using (Html.BeginForm()) 
@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_inicio, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_inicio)
+                @Html.TextBoxFor(model => model.fecha_inicio, new { type = "date" })  
                 @Html.ValidationMessageFor(model => model.fecha_inicio)
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_fin, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_fin)
+                @Html.TextBoxFor(model => model.fecha_fin, new { type = "date" })  
                 @Html.ValidationMessageFor(model => model.fecha_fin)
             </div>
         </div>
@@ -49,17 +49,17 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cargo_id, "Cargo_id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Cargo_id, "Cargo", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Cargo_id", String.Empty)
+                @Html.DropDownList("Cargo_id", "Seleccione..")
                 @Html.ValidationMessageFor(model => model.Cargo_id)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Usuario_id, "Usuario_id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Usuario_id, "Usuario", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Usuario_id", String.Empty)
+                @Html.DropDownList("Usuario_id", "Seleccione..")
                 @Html.ValidationMessageFor(model => model.Usuario_id)
             </div>
         </div>
@@ -73,7 +73,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Volver", "Index")
 </div>
 
 @section Scripts {

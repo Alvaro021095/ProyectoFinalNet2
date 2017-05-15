@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ProyNet2ModelStoreContainer" CdmEntityContainer="ProyNet2Entities1">
+  <EntityContainerMapping StorageEntityContainer="ProyNet2ModelStoreContainer" CdmEntityContainer="ProyNet2Entities">
     <EntitySetMapping Name="Actividad">
       <EntityTypeMapping TypeName="ProyNet2Model.Actividad">
         <MappingFragment StoreEntitySet="Actividad">
@@ -115,6 +115,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="crearActividad" FunctionName="ProyNet2Model.Store.crearActividad" />
+    <FunctionImportMapping FunctionImportName="crearCargo" FunctionName="ProyNet2Model.Store.crearCargo" />
     <FunctionImportMapping FunctionImportName="crearIntegrante" FunctionName="ProyNet2Model.Store.crearIntegrante" />
     <FunctionImportMapping FunctionImportName="crearProyecto" FunctionName="ProyNet2Model.Store.crearProyecto" />
     <FunctionImportMapping FunctionImportName="crearRecurso" FunctionName="ProyNet2Model.Store.crearRecurso" />
@@ -123,6 +124,7 @@
     <FunctionImportMapping FunctionImportName="createRecursoTarea" FunctionName="ProyNet2Model.Store.createRecursoTarea" />
     <FunctionImportMapping FunctionImportName="descontarRecurso" FunctionName="ProyNet2Model.Store.descontarRecurso" />
     <FunctionImportMapping FunctionImportName="editarActividad" FunctionName="ProyNet2Model.Store.editarActividad" />
+    <FunctionImportMapping FunctionImportName="editarCargo" FunctionName="ProyNet2Model.Store.editarCargo" />
     <FunctionImportMapping FunctionImportName="editarIntegrante" FunctionName="ProyNet2Model.Store.editarIntegrante" />
     <FunctionImportMapping FunctionImportName="editarProyecto" FunctionName="ProyNet2Model.Store.editarProyecto" />
     <FunctionImportMapping FunctionImportName="editarRecurso" FunctionName="ProyNet2Model.Store.editarRecurso" />
@@ -130,6 +132,7 @@
     <FunctionImportMapping FunctionImportName="editarReunion" FunctionName="ProyNet2Model.Store.editarReunion" />
     <FunctionImportMapping FunctionImportName="editarTarea" FunctionName="ProyNet2Model.Store.editarTarea" />
     <FunctionImportMapping FunctionImportName="eliminarActividad" FunctionName="ProyNet2Model.Store.eliminarActividad" />
+    <FunctionImportMapping FunctionImportName="eliminarCargo" FunctionName="ProyNet2Model.Store.eliminarCargo" />
     <FunctionImportMapping FunctionImportName="eliminarIntegrante" FunctionName="ProyNet2Model.Store.eliminarIntegrante" />
     <FunctionImportMapping FunctionImportName="eliminarProyecto" FunctionName="ProyNet2Model.Store.eliminarProyecto" />
     <FunctionImportMapping FunctionImportName="eliminarRecurso" FunctionName="ProyNet2Model.Store.eliminarRecurso" />

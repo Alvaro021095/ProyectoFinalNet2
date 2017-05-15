@@ -11,6 +11,7 @@ namespace Platform.Entity.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Cargo
     {
@@ -21,8 +22,11 @@ namespace Platform.Entity.Entity
         }
     
         public int id { get; set; }
+        [DisplayName("Nombre")]
         public string nombre { get; set; }
+        [DisplayName("Salario")]
         public double salario { get; set; }
+        [DisplayName("Horario")]
         public string horario { get; set; }
     
         public virtual ICollection<Integrante> Integrante { get; set; }

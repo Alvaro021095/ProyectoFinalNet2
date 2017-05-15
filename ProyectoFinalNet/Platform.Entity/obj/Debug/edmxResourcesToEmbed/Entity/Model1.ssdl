@@ -255,6 +255,11 @@
     <Parameter Name="proyectoId" Type="int" Mode="In" />
     <Parameter Name="integranteId" Type="int" Mode="In" />
   </Function>
+  <Function Name="crearCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="salario" Type="float" Mode="In" />
+    <Parameter Name="horario" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="crearIntegrante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="proyectoId" Type="int" Mode="In" />
     <Parameter Name="cargoId" Type="int" Mode="In" />
@@ -304,6 +309,12 @@
     <Parameter Name="proyectoId" Type="int" Mode="In" />
     <Parameter Name="integranteId" Type="int" Mode="In" />
   </Function>
+  <Function Name="editarCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="nombre" Type="nvarchar" Mode="In" />
+    <Parameter Name="salario" Type="float" Mode="In" />
+    <Parameter Name="horario" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="editarIntegrante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
     <Parameter Name="proyectoId" Type="int" Mode="In" />
@@ -347,6 +358,9 @@
     <Parameter Name="estado" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="eliminarActividad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="eliminarCargo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="id" Type="int" Mode="In" />
   </Function>
   <Function Name="eliminarIntegrante" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">

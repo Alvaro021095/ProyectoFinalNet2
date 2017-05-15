@@ -271,7 +271,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ProyNet2Entities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="ProyNet2Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Actividad" EntityType="Self.Actividad" />
     <EntitySet Name="Cargo" EntityType="Self.Cargo" />
     <EntitySet Name="Integrante" EntityType="Self.Integrante" />
@@ -338,6 +338,11 @@
       <Parameter Name="proyectoId" Mode="In" Type="Int32" />
       <Parameter Name="integranteId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="crearCargo">
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="salario" Mode="In" Type="Double" />
+      <Parameter Name="horario" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="crearIntegrante">
       <Parameter Name="proyectoId" Mode="In" Type="Int32" />
       <Parameter Name="cargoId" Mode="In" Type="Int32" />
@@ -387,6 +392,12 @@
       <Parameter Name="proyectoId" Mode="In" Type="Int32" />
       <Parameter Name="integranteId" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="editarCargo">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+      <Parameter Name="nombre" Mode="In" Type="String" />
+      <Parameter Name="salario" Mode="In" Type="Double" />
+      <Parameter Name="horario" Mode="In" Type="String" />
+    </FunctionImport>
     <FunctionImport Name="editarIntegrante">
       <Parameter Name="id" Mode="In" Type="Int32" />
       <Parameter Name="proyectoId" Mode="In" Type="Int32" />
@@ -430,6 +441,9 @@
       <Parameter Name="estado" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="eliminarActividad">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="eliminarCargo">
       <Parameter Name="id" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="eliminarIntegrante">

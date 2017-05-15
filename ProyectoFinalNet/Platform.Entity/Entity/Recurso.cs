@@ -11,6 +11,7 @@ namespace Platform.Entity.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Recurso
     {
@@ -20,8 +21,11 @@ namespace Platform.Entity.Entity
         }
     
         public int id { get; set; }
+        [DisplayName("Nombre")]
         public string nombre { get; set; }
+        [DisplayName("Cantidad")]
         public int cantidad { get; set; }
+        [DisplayName("Ubicacion")]
         public string ubicacion { get; set; }
     
         public virtual ICollection<Recurso_Tarea> Recurso_Tarea { get; set; }

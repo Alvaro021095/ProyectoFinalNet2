@@ -11,6 +11,7 @@ namespace Platform.Entity.Entity
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     
     public partial class Proyecto
     {
@@ -22,11 +23,17 @@ namespace Platform.Entity.Entity
         }
     
         public int id { get; set; }
+        [DisplayName("Nombre")]
         public string nombre { get; set; }
+        [DisplayName("Fecha Inicio")]
         public System.DateTime fecha_inicio { get; set; }
+        [DisplayName("Fecha Fin")]
         public System.DateTime fecha_fin { get; set; }
+        [DisplayName("Etapa")]
         public string etapa { get; set; }
+        [DisplayName("Cargo")]
         public int Cargo_id { get; set; }
+        [DisplayName("Usuario")]
         public int Usuario_id { get; set; }
     
         public virtual ICollection<Actividad> Actividad { get; set; }
